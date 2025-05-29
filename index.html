@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Revisão e Simulado de Econometria</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background: #f4f6f8; color: #2c3e50; }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    header h1 { margin: 0; font-size: 2em; }
+    header .author { font-size: 0.9em; color: #7f8c8d; }
+    section, form { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    h2 { color: #34495e; border-bottom: 2px solid #ecf0f1; padding-bottom: 5px; }
+    .questao, .comentario { margin-bottom: 20px; padding: 15px; border-left: 4px solid #3498db; background: #ecf0f1; border-radius: 4px; }
+    .questao label { font-weight: bold; }
+    code { background: #ecf0f1; padding: 2px 4px; border-radius: 4px; font-family: Consolas, monospace; }
+    textarea { width: 100%; height: 80px; border: 1px solid #bdc3c7; border-radius: 4px; padding: 8px; resize: vertical; }
+    input[type="text"], input[type="number"] { width: 120px; padding: 6px; border: 1px solid #bdc3c7; border-radius: 4px; }
+    .botao { background: #3498db; color: #fff; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 1em; }
+    .botao:hover { background: #2980b9; }
+    #resultado, #comentadas { margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    ul { margin: 10px 0 10px 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Revisão e Simulado de Econometria</h1>
+    <div class="author">Criado por: Alan Dutra</div>
+  </header>
+
+ <section id="revisao">
+    <p><strong>Econometria</strong> é a aplicação de métodos estatísticos para testar teorias econômicas com dados reais. O procedimento geral inclui:</p>
+    <ol>
+      <li>Formulação da hipótese (ex.: "investimento em saúde aumenta o PIB").</li>
+      <li>Especificação do modelo: definir variável dependente <em>Y</em> e a(s) explicativa(s) <em>X</em>, e forma funcional.</li>
+      <li>Coleta de dados (<em>cross-section</em>, <em>time series</em>, <em>painel</em>).</li>
+      <li>Estimação por OLS/MQO: coeficientes <em>β</em> que minimizam a soma dos quadrados dos resíduos.</li>
+      <li>Diagnóstico: verificar <em>E[u|X]=0</em>, heterocedasticidade, autocorrelação.</li>
+      <li>Inferência e previsão: interpretar coeficientes e projetar cenários.</li>
+    </ol>
+    <p><strong>Termos-chave:</strong></p>
+    <ul>
+      <li><strong>Variável dependente (Y)</strong>: o que queremos explicar.</li>
+      <li><strong>Variável explicativa (X)</strong>: fator que influencia Y.</li>
+      <li><strong>Erro (u)</strong>: diferença entre observado e previsto.</li>
+      <li><strong>Linearidade em parâmetros</strong>: modelo na forma <em>β₀ + β₁X₁ + ... + βₖXₖ</em>.</li>
+      <li><strong>Esperança condicional</strong> <em>E[Y|X]</em>: média de Y dado X.</li>
+    </ul>
+  </section>
+
+  <form id="quizForm">
+    <h2>Simulado: Questões da Professora (1–12)</h2>
+
+    <div class="question">
+      <h3>1. Qual a ordem para utilização da econometria, partindo de uma teoria econômica?</h3>
+      <label><input type="radio" name="q1" value="a"> A - Teoria → Modelo → Dados → Estimação → Diagnóstico → Interpretação</label><br>
+      <label><input type="radio" name="q1" value="b"> B - Dados → Teoria → Estimação → Modelo</label><br>
+      <label><input type="radio" name="q1" value="c"> C - Estimação → Diagnóstico → Teoria → Modelo</label>
+    </div>
+
+    <div class="question">
+      <h3>2. De onde surgiu a análise de regressão, qual é a distinção da definição atual?</h3>
+      <label><input type="radio" name="q2" value="a"> A - Regressão logística, hoje definida por regressão estatística</label><br>
+      <label><input type="radio" name="q2" value="b"> B - Estudo de Galton sobre altura e regressão à média de altura entre pais e filhos, hoje definida por regressão</label><br>
+      <label><input type="radio" name="q2" value="c"> C - Pesquisas do século XIX em apostas, hoje definida por estimativa </label>
+    </div>
+
+    <div class="question">
+      <h3>3. Por que na economia se afirma que são utilizadas relações estatísticas para a análise de regressão?</h3>
+      <label><input type="radio" name="q3" value="a"> A - Porque os modelos econômicos são sempre exatos</label><br>
+      <label><input type="radio" name="q3" value="b"> B - Porque muitos fatores afetam as variáveis econômicas</label><br>
+      <label><input type="radio" name="q3" value="c"> C - Porque o MQO é determinístico</label>
+    </div>
+
+    <div class="question">
+      <h3>4. Distingua os termos causalidade e correlação.</h3>
+      <label><input type="radio" name="q4" value="a"> A - Causalidade implica influência direta; correlação não</label><br>
+      <label><input type="radio" name="q4" value="b"> B - Correlação é sempre causal</label><br>
+      <label><input type="radio" name="q4" value="c"> C - Causalidade não exige evidência correlacional</label>
+    </div>
+
+    <div class="question">
+      <h3>5. Qual são os sinônimos para as variáveis dependente (Y) e explicativa (X).</h3>
+      <label><input type="radio" name="q5" value="a"> A - Dependente: resposta, outcome ou endógena | Explicativa: regressora, covariável, independente ou exógena </label><br>
+      <label><input type="radio" name="q5" value="b"> B - Dependente: regressora, outline ou exógena | Explicativa: resposta, variável, independente ou endógena</label><br>
+      <label><input type="radio" name="q5" value="c"> C - Dependente: váriavel, outline ou mútua | Explicativa: covariável, independente ou exógena</label>
+    </div>
+
+    <div class="question">
+      <h3>6. Quais são os tipos de dado usados na econometria?</h3>
+      <label><input type="radio" name="q6" value="a"> A - Corte transversal, Série temporal, Dados de painel e cross-section</label><br>
+      <label><input type="radio" name="q6" value="b"> B - Corte vertical, Série temporal, Dados de painel e cross-section</label><br>
+      <label><input type="radio" name="q6" value="c"> C - Corte transversal, Série temporal, Dados de painel e pooling</label>
+    </div>
+
+    <div class="question">
+      <h3>7. O que a esperança condicional E[Y|X] representa?</h3>
+      <label><input type="radio" name="q7" value="a"> A - Média de Y sem relação com X</label><br>
+      <label><input type="radio" name="q7" value="b"> B - Média de Y dado um valor de X</label><br>
+      <label><input type="radio" name="q7" value="c"> C - Mediana de X dado Y</label>
+    </div>
+
+    <div class="question">
+      <h3>8. Quando um modelo é "linear em parâmetros"?</h3>
+      <label><input type="radio" name="q8" value="a"> A - Quando Y está elevado ao quadrado</label><br>
+      <label><input type="radio" name="q8" value="b"> B - Quando os betas aparecem multiplicando termos conhecidos</label><br>
+      <label><input type="radio" name="q8" value="c"> C - Quando X aparece dentro de um logaritmo</label>
+    </div>
+
+    <div class="question">
+      <h3>9. Qual a diferença entre função de regressão populacional e amostral?</h3>
+      <label><input type="radio" name="q9" value="a"> A - A populacional é estimada por MQO</label><br>
+      <label><input type="radio" name="q9" value="b"> B - A amostral usa dados, a populacional é teórica</label><br>
+      <label><input type="radio" name="q9" value="c"> C - Ambas são obtidas com dados</label>
+    </div>
+
+    <div class="question">
+      <h3>10. Por que assumimos E[u]=0?</h3>
+      <label><input type="radio" name="q10" value="a"> A - Para evitar viés nos coeficientes</label><br>
+      <label><input type="radio" name="q10" value="b"> B - Para os erros terem valor negativo</label><br>
+      <label><input type="radio" name="q10" value="c"> C - Para garantir multicolinearidade</label>
+    </div>
+    <br>
+    <div class="question">
+      <h3>11. Determine se as equações são lineares em parâmetros:</h3>
+      <ul>
+        <li>a. <code>Y<sub>i</sub> = β<sub>1</sub> + β<sub>2</sub>(1/X<sub>i</sub>) + u<sub>i</sub></code><br>
+          <label><input type="radio" name="q11a" value="Sim"> Sim</label>
+          <label><input type="radio" name="q11a" value="Não"> Não</label>
+        </li>
+        <br>
+        <li>b. <code>Y<sub>i</sub> = β<sub>1</sub> + β<sub>2</sub> ln X<sub>i</sub> + u<sub>i</sub></code><br>
+          <label><input type="radio" name="q11b" value="Sim"> Sim</label>
+          <label><input type="radio" name="q11b" value="Não"> Não</label>
+        </li>
+        <br>
+        <li>c. <code>ln Y<sub>i</sub> = β<sub>1</sub> + β<sub>2</sub>X<sub>i</sub> + u<sub>i</sub></code><br>
+          <label><input type="radio" name="q11c" value="Sim"> Sim</label>
+          <label><input type="radio" name="q11c" value="Não"> Não</label>
+        </li>
+        <br>
+        <li>d. <code>ln Y<sub>i</sub> = ln β<sub>1</sub> + β<sub>2</sub> ln X<sub>i</sub> + u<sub>i</sub></code><br>
+          <label><input type="radio" name="q11d" value="Sim"> Sim</label>
+          <label><input type="radio" name="q11d" value="Não"> Não</label>
+        </li>
+        <br>
+        <li>e. <code>ln Y<sub>i</sub> = β<sub>1</sub> - β<sub>2</sub>(1/X<sub>i</sub>) + u<sub>i</sub></code><br>
+          <label><input type="radio" name="q11e" value="Sim"> Sim</label>
+          <label><input type="radio" name="q11e" value="Não"> Não</label>
+        </li>
+        <br>
+      </ul>
+    </div>
+    <br>
+    <div class="question">
+      <h3>12. Dada a tabela de preços (X) e quantidades (Y):</h3>
+      <table>
+        <caption>Tabela de Preço (X) e Quantidade Demandada (Y)</caption>
+        <thead>
+          <tr>
+            <th>X</th>
+            <th>5,00</th><th>10,00</th><th>15,00</th><th>20,00</th><th>25,00</th>
+            <th>30,00</th><th>35,00</th><th>40,00</th><th>45,00</th><th>50,00</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Y</th>
+            <td>25</td><td>20</td><td>15</td><td>15</td><td>13</td><td>10</td><td>9</td><td>8</td><td>6</td><td>5</td>
+          </tr>
+          <tr>
+            <td></td><td>20</td><td>19</td><td>18</td><td>14</td><td>11</td><td>11</td><td>10</td><td>8</td><td>7</td><td>5</td>
+          </tr>
+          <tr>
+            <td></td><td>22</td><td>18</td><td>17</td><td>13</td><td>12</td><td>11</td><td>8</td><td>7</td><td>6</td><td>4</td>
+          </tr>
+          <tr>
+            <td></td><td>24</td><td>21</td><td>16</td><td>15</td><td>12</td><td>10</td><td>9</td><td>7</td><td>6</td><td>6</td>
+          </tr>
+          <tr>
+            <td></td><td>21</td><td>18</td><td>16</td><td>14</td><td>13</td><td>10</td><td>9</td><td>8</td><td>6</td><td>5</td>
+          </tr>
+          <tr>
+            <td></td><td>22</td><td>18</td><td>16</td><td>16</td><td>11</td><td>11</td><td>10</td><td>9</td><td>7</td><td>5</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>12.1. Calcule a esperança condicional <em>E[Y|X]</em> para cada preço, separando valores por vírgula:</h4>
+      <input type="text" id="q12_1" placeholder="22.33,19.00,..."> 
+
+      <h4>12.2. Calcule a esperança incondicional <em>E[Y]</em>:</h4>
+      <input type="text" id="q12_2" placeholder="12.30"> 
+
+      <h4>12.3. A hipótese da lei da demanda está de acordo? (Sim/Não)</h4>
+      <label><input type="radio" name="q12_3" value="Sim"> Sim</label>
+      <label><input type="radio" name="q12_3" value="Não"> Não</label>
+
+      <h4>12.4. A média dos resíduos <em>u</em> é zero? (Sim/Não)</h4>
+      <label><input type="radio" name="q12_4" value="Sim"> Sim</label>
+      <label><input type="radio" name="q12_4" value="Não"> Não</label>
+    </div>
+
+
+    <h2>Questões Criadas (13-19)</h2>
+
+    <!-- Questões extras -->
+    <div class="question">
+      <h3>13. Por que a condição E[u|X] = 0 é mais forte que E[u] = 0?</h3>
+      <label><input type="radio" name="q13" value="a"> A - Porque garante viés apenas geral</label><br>
+      <label><input type="radio" name="q13" value="b"> B - Porque garante ausência de viés para cada valor de X</label><br>
+      <label><input type="radio" name="q13" value="c"> C - Porque impede variância heterocedástica</label>
+    </div>
+
+    <div class="question">
+      <h3>14. "Se duas variáveis têm correlação zero, então não há relação causal entre elas." Essa afirmação é:</h3>
+      <label><input type="radio" name="q14" value="a"> Verdadeira</label><br>
+      <label><input type="radio" name="q14" value="b"> Falsa</label>
+    </div>
+
+    <div class="question">
+      <h3>15. Qual não é sinônimo de variável explicativa?</h3>
+      <label><input type="radio" name="q15" value="a"> A - Covariável</label><br>
+      <label><input type="radio" name="q15" value="b"> B - Exógena</label><br>
+      <label><input type="radio" name="q15" value="c"> C - Resposta</label><br>
+      <label><input type="radio" name="q15" value="d"> D - Regressora</label>
+    </div>
+
+    <div class="question">
+      <h3>16. Em regressão múltipla, a ausência de multicolinearidade perfeita significa que:</h3>
+      <label><input type="radio" name="q16" value="a"> A - Nenhuma variável explicativa está correlacionada com o erro</label><br>
+      <label><input type="radio" name="q16" value="b"> B - A matriz X'X é invertível</label><br>
+      <label><input type="radio" name="q16" value="c"> C - E[u|X] = 0</label><br>
+      <label><input type="radio" name="q16" value="d"> D - A soma dos resíduos é zero</label>
+    </div>
+
+    <div class="question">
+      <h3>17. Dado X = [1, 2, 3] e Y = [4, 5, 7], qual o valor estimado de β₁?</h3>
+      <label><input type="radio" name="q17" value="a"> A - 1</label><br>
+      <label><input type="radio" name="q17" value="b"> B - 1,5</label><br>
+      <label><input type="radio" name="q17" value="c"> C - 2</label><br>
+      <label><input type="radio" name="q17" value="d"> D - 0,5</label>
+    </div>
+
+    <div class="question">
+      <h3>18. Dado que β₁ = (Calculado Acima) e as médias são X̄ = 2, Ȳ = 5,33, qual o valor estimado de β₀?</h3>
+      <label><input type="radio" name="q18" value="a"> A - 2</label><br>
+      <label><input type="radio" name="q18" value="b"> B - 2,33</label><br>
+      <label><input type="radio" name="q18" value="c"> C - 1,5</label><br>
+      <label><input type="radio" name="q18" value="d"> D - 3,33</label>
+    </div>
+
+    <div class="question">
+      <h3>19. Qual a equação final estimada para Y?</h3>
+      <label><input type="radio" name="q19" value="a"> A - Ŷ = 1,5 + 2,33X</label><br>
+      <label><input type="radio" name="q19" value="b"> B - Ŷ = 2,33 + 1,5X</label><br>
+      <label><input type="radio" name="q19" value="c"> C - Ŷ = 5,33 + 1,5X</label><br>
+      <label><input type="radio" name="q19" value="d"> D - Ŷ = 2X + 1</label>
+
+        
+    <br><br>
+    <div style="text-align: center;">
+      <button type="button" onclick="corrigirQuiz()">Corrigir Questões</button>
+      <button type="button" id="toggleBtn" onclick="mostrarComentarios()">[+] Ver Questões Comentadas</button>
+    </div>
+    </form>
+
+    <div id="comentarios" style="display: none; margin-top: 30px; padding: 15px; border: 1px solid #ccc; background-color: #f9f9f9;">
+      <pre id="textoComentado" style="white-space: pre-wrap;"></pre>
+    </div>
+
+      <div id="resultado"></div>
+      <div id="comentarios" style="display:none;"><pre id="textoComentado"></pre></div>
+
+  <script>
+      const respostas = {
+        q1: "a",    // Teoria → Modelo → Dados → Estimação → Diagnóstico → Interpretação
+        q2: "b",    // Galton → Regressão à média
+        q3: "b",    // Porque muitos fatores afetam as variáveis econômicas
+        q4: "a",    // Causalidade implica influência direta; correlação não
+        q5: "a",    // Correta: Dependente = resposta, outcome, endógena | Explicativa = regressora, etc.
+        q6: "c",    // Corte transversal, série temporal, painel e pooling
+        q7: "b",    // Média de Y dado X
+        q8: "b",    // Linear em parâmetros = betas multiplicando termos conhecidos
+        q9: "b",    // Amostral usa dados, populacional é teórica
+        q10: "a",   // Para evitar viés
+        q11a: "Sim",// É linear, pois 1/X é um termo conhecido
+        q11b: "Sim",// ln(Xi) é função de Xi, mas beta multiplica diretamente
+        q11c: "Sim",// ln(Yi) não altera a linearidade nos parâmetros
+        q11d: "Não",// ln(β1) não é linear em β1
+        q11e: "Sim",// β2 multiplica um termo conhecido, apesar do sinal
+        q12_1: "22.33,19.00,16.33,14.50,12.00,10.50,9.17,7.83,6.33,5.00",
+        q12_2: "12.30",
+        q12_3: "Sim", // A média condicional de Y diminui com X (lei da demanda)
+        q12_4: "Sim", // Resíduos têm média zero
+        q13: "b",  // E[u|X]=0 garante ausência de viés para cada X
+        q14: "b",  // Falsa — correlação zero não implica falta de causalidade
+        q15: "c",  // “Resposta” é a dependente, não explicativa
+        q16: "b",  // A matriz X'X deve ser invertível
+        q17: "b",  // β1 = 1,5 conforme cálculo
+        q18: "b",  // β0 = 5,33 - 1,5×2 = 2,33
+        q19: "b",  // Ŷ = 2,33 + 1,5X
+      };
+
+        function corrigirQuiz() {
+        let total = 0;
+        let corretas = 0;
+        let questoesErradas = [];
+
+        for (let q in respostas) {
+          total++;
+
+          const radios = document.querySelectorAll(`input[name=${q}]`);
+          const input = document.getElementById(q);
+
+          if (radios.length > 0) {
+            // Questão de múltipla escolha
+            const marcada = document.querySelector(`input[name=${q}]:checked`);
+            if (marcada && marcada.value === respostas[q]) {
+              corretas++;
+            } else {
+              questoesErradas.push(q);
+            }
+          } else if (input) {
+            // Questão de input textual
+            const valorUsuario = input.value.trim().replace(/\s+/g, '').replace(',', '.');
+            const valorEsperado = respostas[q].trim().replace(/\s+/g, '').replace(',', '.');
+
+            const numUsuario = parseFloat(valorUsuario);
+            const numEsperado = parseFloat(valorEsperado);
+            const isNumero = !isNaN(numUsuario) && !isNaN(numEsperado);
+
+            const acertou = (isNumero && Math.abs(numUsuario - numEsperado) < 0.01) ||
+                            (!isNumero && valorUsuario.toLowerCase() === valorEsperado.toLowerCase());
+
+            if (acertou) {
+              corretas++;
+            } else {
+              questoesErradas.push(q);
+            }
+          }
+        }
+
+        let nota = Math.round((corretas / total) * 100);
+        let mensagem = `Nota: ${nota}/100\nAcertos: ${corretas}/${total}`;
+
+        if (questoesErradas.length > 0) {
+          mensagem += `\nQuestões erradas: ${questoesErradas.join(', ').toUpperCase()}`;
+        }
+
+        document.getElementById("resultado").innerText = mensagem;
+      }
+
+      function mostrarComentarios() {
+        const bloco = document.getElementById("comentarios");
+        const btn = document.getElementById("toggleBtn");
+
+        if (bloco.style.display === "block") {
+          bloco.style.display = "none";
+          btn.innerText = "[+] Ver Questões Comentadas";
+          return;
+        }
+
+        const texto = `--- COMENTÁRIOS DAS QUESTÕES ---
+
+      1) A) Teoria → Modelo → Dados → Estimação → Diagnóstico → Interpretação
+      Explicação: Essa é a sequência correta para aplicar a econometria, começando por uma hipótese teórica e terminando na análise dos resultados estimados.
+
+      2) B) Estudo de Galton sobre altura
+      Explicação: A análise de regressão teve origem nos estudos de Francis Galton no século XIX, ao observar a tendência de “regressão à média” entre pais e filhos.
+
+      3) B) Porque muitos fatores afetam as variáveis econômicas
+      Explicação: Como há muita variabilidade e fatores externos, a estatística nos permite trabalhar com médias e incertezas em vez de previsões exatas.
+
+      4) A) Causalidade implica influência direta; correlação não
+      Explicação: Correlação é apenas uma associação estatística; causalidade requer um vínculo real de causa e efeito.
+
+      5) A) Dependente: resposta, outcome, endógena | Explicativa: regressora, covariável, exógena
+      Explicação: São os sinônimos mais usados em estatística e econometria para as variáveis Y e X.
+
+      6) C) Corte transversal, Série temporal, Dados de painel e Pooling
+      Explicação: Esses são os principais tipos de dados usados na econometria para diferentes tipos de análises.
+
+      7) B) Média de Y dado um valor de X
+      Explicação: Isso define a esperança condicional — o valor médio esperado de Y condicionado a um valor específico de X.
+
+      8) B) Quando os betas aparecem multiplicando termos conhecidos
+      Explicação: Mesmo com transformação de X (como lnX, 1/X), o modelo continua linear se os parâmetros (β) aparecerem multiplicando diretamente.
+
+      9) B) A amostral usa dados; a populacional é teórica
+      Explicação: A função de regressão populacional é a verdadeira relação teórica entre as variáveis. A amostral é o que estimamos com os dados disponíveis.
+
+      10) A) Para evitar viés nos coeficientes
+      Explicação: Assumir E[u]=0 garante que o erro não “puxa” as estimativas para cima ou para baixo, mantendo a estimativa centrada.
+
+      11) Verificação da linearidade das equações:
+      A) Sim – 1/X é uma transformação conhecida.
+      B) Sim – ln(X) é permitido.
+      C) Sim – transformação em Y não afeta a linearidade dos parâmetros.
+      D) Não – ln(β₁) não é linear em β₁.
+      E) Sim – mesmo com sinal negativo e 1/X, a equação é linear em parâmetros.
+
+      12) Tabela de preços e quantidades:
+      12.1) E[Y|X] – Cálculo da média das quantidades para cada preço.
+      12.2) E[Y] – Média geral de todos os 60 valores: 12,30
+      12.3) Lei da Demanda – Sim, pois a média da demanda cai com o aumento do preço.
+      12.4) E[u] = 0 – Sim, pois os resíduos são calculados a partir da média condicional.
+
+      13) B) Porque garante ausência de viés para cada valor de X
+      Explicação: Com E[u|X]=0, evitamos viés mesmo dentro de subgrupos específicos (como diferentes níveis de preço).
+
+      14) B) Falsa
+      Explicação: Uma correlação nula não elimina a possibilidade de causalidade, que pode ser não linear ou encoberta.
+
+      15) C) Resposta
+      Explicação: “Resposta” se refere à variável dependente, não à variável explicativa.
+
+      16) B) A matriz X'X é invertível
+      Explicação: Para que o estimador MQO funcione, a matriz X'X deve poder ser invertida, o que não acontece se houver multicolinearidade perfeita.
+
+      17) A) β₁ = 1,5
+      Explicação: Cálculo do coeficiente angular:
+
+      Passo 1 – Calcular as médias:
+      X̄ = (1 + 2 + 3)/3 = 2
+      Ȳ = (4 + 5 + 7)/3 ≈ 5,33
+
+      Passo 2 – Aplicar fórmula:
+      β₁ = Σ[(Xᵢ - X̄)(Yᵢ - Ȳ)] / Σ[(Xᵢ - X̄)²]
+
+      Tabela auxiliar:
+      Xᵢ  Yᵢ   Xᵢ−X̄   Yᵢ−Ȳ   (Xᵢ−X̄)(Yᵢ−Ȳ)   (Xᵢ−X̄)²
+      1    4     -1     -1,33       1,33         1
+      2    5      0     -0,33       0,00         0
+      3    7      1      1,67       1,67         1
+
+      Somatórios:
+      Numerador = 1,33 + 0 + 1,67 = 3,00
+      Denominador = 1 + 0 + 1 = 2
+
+      Resultado:
+      β₁ = 3 / 2 = 1,5
+
+      18) B) β₀ = 2,33
+      Explicação: Cálculo do intercepto:
+
+      Fórmula:
+      β₀ = Ȳ - β₁ × X̄
+
+      Substituindo:
+      β₀ = 5,33 - 1,5 × 2
+      β₀ = 5,33 - 3 = 2,33
+
+      19) B) Ŷ = 2,33 + 1,5X
+      Explicação: Com β₀ = 2,33 e β₁ = 1,5, a equação da reta estimada é Ŷ = 2,33 + 1,5X.
+
+    --- Fim dos comentários ---`;
+
+      document.getElementById("textoComentado").innerText = texto;
+      bloco.style.display = "block";
+      btn.innerText = "[-] Ocultar Comentários";
+    }
+  </script>
+</body>
+</html>

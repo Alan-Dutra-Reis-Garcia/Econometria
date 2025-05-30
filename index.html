@@ -9,7 +9,7 @@
     header h1 { margin: 0; font-size: 2em; }
     header .author { font-size: 0.9em; color: #7f8c8d; }
     section, form { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
-    h2 { color: #34495e; border-bottom: 2px solid #ecf0f1; padding-bottom: 5px; }
+    h2 { color: #ff0909; border-bottom: 2px solid #ecf0f1; padding-bottom: 5px; }
     .questao, .comentario { margin-bottom: 20px; padding: 15px; border-left: 4px solid #3498db; background: #ecf0f1; border-radius: 4px; }
     .questao label { font-weight: bold; }
     code { background: #ecf0f1; padding: 2px 4px; border-radius: 4px; font-family: Consolas, monospace; }
@@ -258,18 +258,153 @@
 
         
     <br><br>
-    <div style="text-align: center;">
-      <button type="button" onclick="corrigirQuiz()">Corrigir Questões</button>
-      <button type="button" id="toggleBtn" onclick="mostrarComentarios()">[+] Ver Questões Comentadas</button>
-    </div>
-    </form>
+      <div style="text-align: center; margin-top: 20px;">
+        <button type="button" onclick="corrigirQuiz()" style="
+          padding: 15px 30px;
+          font-size: 1.2em;
+          border-radius: 8px;
+          background-color: #3498db;
+          color: white;
+          border: none;
+          cursor: pointer;
+          margin: 5px;
+        ">
+          Corrigir Questões
+        </button>
 
-    <div id="comentarios" style="display: none; margin-top: 30px; padding: 15px; border: 1px solid #ccc; background-color: #f9f9f9;">
-      <pre id="textoComentado" style="white-space: pre-wrap;"></pre>
-    </div>
+        <button type="button" id="toggleBtn" onclick="mostrarComentarios()" style="
+          padding: 15px 30px;
+          font-size: 1.2em;
+          border-radius: 8px;
+          background-color: #2ecc71;
+          color: white;
+          border: none;
+          cursor: pointer;
+          margin: 5px;
+        ">
+          [+] Ver Questões Comentadas
+        </button>
+      </div>
+    <br><br>
 
-      <div id="resultado"></div>
-      <div id="comentarios" style="display:none;"><pre id="textoComentado"></pre></div>
+    <div id="resultado"></div>
+   <div id="questoescomentadas" style="display: none; margin-top: 30px; padding: 15px; border: 1px solid #ccc; background-color: #f9f9f9;">
+      <h2>--- QUESTÕES CORRIGIDAS ---</h2>
+
+      <p><b>1) A)</b> Teoria → Modelo → Dados → Estimação → Diagnóstico → Interpretação<br>
+      Explicação: Essa é a sequência correta para aplicar a econometria, começando por uma hipótese teórica e terminando na análise dos resultados estimados.</p>
+
+      <p><b>2) B)</b> Estudo de Galton sobre altura<br>
+      Explicação: A análise de regressão teve origem nos estudos de Francis Galton no século XIX, ao observar a tendência de “regressão à média”.</p>
+
+      <p><b>3) B)</b> Porque muitos fatores afetam as variáveis econômicas<br>
+      Explicação: Como há muita variabilidade e fatores externos, a estatística nos permite trabalhar com médias e incertezas em vez de previsões exatas.</p>
+
+      <p><b>4) A)</b> Causalidade implica influência direta; correlação não<br>
+      Explicação: Correlação é apenas uma associação estatística; causalidade requer um vínculo real de causa e efeito.</p>
+
+      <p><b>5) A)</b> Dependente: resposta, outcome, endógena | Explicativa: regressora, covariável, exógena</p>
+
+      <p><b>6) C)</b> Corte transversal, Série temporal, Dados de painel e Pooling<br>
+      Explicação: Esses são os principais tipos de dados usados na econometria para diferentes tipos de análises.</p>
+
+      <p><b>7) B)</b> Média de Y dado um valor de X<br>
+      Explicação: Isso define a esperança condicional: E[Y|X].</p>
+
+      <p><b>8) B)</b> Quando os betas aparecem multiplicando termos conhecidos<br>
+      Explicação: Mesmo com transformação de X (como lnX, 1/X), o modelo continua linear se os parâmetros (β) aparecerem multiplicando diretamente.</p>
+
+      <p><b>9) B)</b> A amostral usa dados; a populacional é teórica<br>
+      Explicação: A função de regressão populacional é a verdadeira relação teórica entre as variáveis. A amostral é o que estimamos com os dados disponíveis.</p>
+
+      <p><b>10) A)</b> Para evitar viés nos coeficientes<br>
+      Explicação: Assumir E[u]=0 garante que o erro não “puxa” as estimativas para cima ou para baixo, mantendo a estimativa centrada.</p>
+
+      <p><b>11)</b> Verificação da linearidade:<br>
+        <b>a)</b> Sim – 1/X é transformação conhecida<br>
+        <b>b)</b> Sim – ln(X) também<br>
+        <b>c)</b> Sim – ln(Y) não afeta os parâmetros<br>
+        <b>d)</b> Não – ln(β₁) não é linear<br>
+        <b>e)</b> Sim – mesmo com sinal negativo, é linear em parâmetros</p>
+
+      <p><b>12)</b> Tabela de preços e quantidades:<br>
+        <b>12.1)</b> E[Y|X] – Cálculo da média das quantidades para cada preço<br>
+        <b>12.2)</b> E[Y] – Média geral de todos os 60 valores: 12,30<br>
+        <b>12.3)</b> Lei da Demanda – Sim, pois a média da demanda cai com o aumento do preço<br>
+        <b>12.4)</b> E[u] = 0 – Sim, pois os resíduos são calculados a partir da média condicional</p>
+
+      <p><b>13) B)</b> E[u|X]=0 garante ausência de viés mesmo em subgrupos de X<br>
+      Explicação: Com E[u|X]=0, evitamos viés mesmo dentro de subgrupos específicos (como diferentes níveis de preço).</p>
+
+      <p><b>14) B)</b> Falsa – Correlação zero não implica ausência de causalidade<br>
+      Explicação: Uma correlação nula não elimina a possibilidade de causalidade, que pode ser não linear ou encoberta.</p>
+
+      <p><b>15) C)</b> "Resposta" refere-se à variável dependente</p>
+
+      <p><b>16) B)</b> A matriz X'X é invertível<br>
+      Explicação: Para que o estimador MQO funcione, a matriz X'X deve poder ser invertida, o que não acontece se houver multicolinearidade perfeita.</p>
+
+      <p><b>17) B)</b> β₁ = 1,5<br>
+      <i>Cálculo:</i><br>
+      Passo 1 – Calcular as médias:<br>
+      X̄ = (1 + 2 + 3)/3 = 2<br>
+      Ȳ = (4 + 5 + 7)/3 ≈ 5,33<br><br>
+      Passo 2 – Aplicar fórmula:<br>
+      β₁ = Σ[(Xᵢ − X̄)(Yᵢ − Ȳ)] / Σ[(Xᵢ − X̄)²]</p>
+
+      <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; margin: 10px 0; text-align: center;">
+        <thead style="background-color: #f0f0f0;">
+          <tr>
+            <th>Xᵢ</th>
+            <th>Yᵢ</th>
+            <th>Xᵢ − X̄</th>
+            <th>Yᵢ − Ȳ</th>
+            <th>(Xᵢ − X̄)(Yᵢ − Ȳ)</th>
+            <th>(Xᵢ − X̄)²</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>4</td>
+            <td>−1</td>
+            <td>−1,33</td>
+            <td>1,33</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>5</td>
+            <td>0</td>
+            <td>−0,33</td>
+            <td>0,00</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>7</td>
+            <td>1</td>
+            <td>1,67</td>
+            <td>1,67</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Somatórios:<br>
+      Numerador = 1,33 + 0 + 1,67 = 3,00<br>
+      Denominador = 1 + 0 + 1 = 2<br>
+      Resultado: β₁ = 3 / 2 = 1,5</p>
+
+      <p><b>18) B)</b> β₀ = 2,33<br>
+      Explicação: β₀ = Ȳ - β₁ × X̄ = 5,33 − 1,5×2 = 2,33</p>
+
+      <p><b>19) B)</b> Ŷ = 2,33 + 1,5X<br>
+      Explicação: Com β₀ = 2,33 e β₁ = 1,5, a equação da reta estimada é Ŷ = 2,33 + 1,5X.</p>
+
+      <h3>--- Fim das Correções ---</h3>
+    </div>
+  </form>
 
   <script>
       const respostas = {
@@ -350,115 +485,19 @@
         document.getElementById("resultado").innerText = mensagem;
       }
 
+
       function mostrarComentarios() {
-        const bloco = document.getElementById("comentarios");
+        const bloco = document.getElementById("questoescomentadas");
         const btn = document.getElementById("toggleBtn");
 
         if (bloco.style.display === "block") {
           bloco.style.display = "none";
           btn.innerText = "[+] Ver Questões Comentadas";
-          return;
+        } else {
+          bloco.style.display = "block";
+          btn.innerText = "[-] Ocultar Comentários";
         }
-
-        const texto = `--- COMENTÁRIOS DAS QUESTÕES ---
-
-      1) A) Teoria → Modelo → Dados → Estimação → Diagnóstico → Interpretação
-      Explicação: Essa é a sequência correta para aplicar a econometria, começando por uma hipótese teórica e terminando na análise dos resultados estimados.
-
-      2) B) Estudo de Galton sobre altura
-      Explicação: A análise de regressão teve origem nos estudos de Francis Galton no século XIX, ao observar a tendência de “regressão à média” entre pais e filhos.
-
-      3) B) Porque muitos fatores afetam as variáveis econômicas
-      Explicação: Como há muita variabilidade e fatores externos, a estatística nos permite trabalhar com médias e incertezas em vez de previsões exatas.
-
-      4) A) Causalidade implica influência direta; correlação não
-      Explicação: Correlação é apenas uma associação estatística; causalidade requer um vínculo real de causa e efeito.
-
-      5) A) Dependente: resposta, outcome, endógena | Explicativa: regressora, covariável, exógena
-      Explicação: São os sinônimos mais usados em estatística e econometria para as variáveis Y e X.
-
-      6) C) Corte transversal, Série temporal, Dados de painel e Pooling
-      Explicação: Esses são os principais tipos de dados usados na econometria para diferentes tipos de análises.
-
-      7) B) Média de Y dado um valor de X
-      Explicação: Isso define a esperança condicional — o valor médio esperado de Y condicionado a um valor específico de X.
-
-      8) B) Quando os betas aparecem multiplicando termos conhecidos
-      Explicação: Mesmo com transformação de X (como lnX, 1/X), o modelo continua linear se os parâmetros (β) aparecerem multiplicando diretamente.
-
-      9) B) A amostral usa dados; a populacional é teórica
-      Explicação: A função de regressão populacional é a verdadeira relação teórica entre as variáveis. A amostral é o que estimamos com os dados disponíveis.
-
-      10) A) Para evitar viés nos coeficientes
-      Explicação: Assumir E[u]=0 garante que o erro não “puxa” as estimativas para cima ou para baixo, mantendo a estimativa centrada.
-
-      11) Verificação da linearidade das equações:
-      A) Sim – 1/X é uma transformação conhecida.
-      B) Sim – ln(X) é permitido.
-      C) Sim – transformação em Y não afeta a linearidade dos parâmetros.
-      D) Não – ln(β₁) não é linear em β₁.
-      E) Sim – mesmo com sinal negativo e 1/X, a equação é linear em parâmetros.
-
-      12) Tabela de preços e quantidades:
-      12.1) E[Y|X] – Cálculo da média das quantidades para cada preço.
-      12.2) E[Y] – Média geral de todos os 60 valores: 12,30
-      12.3) Lei da Demanda – Sim, pois a média da demanda cai com o aumento do preço.
-      12.4) E[u] = 0 – Sim, pois os resíduos são calculados a partir da média condicional.
-
-      13) B) Porque garante ausência de viés para cada valor de X
-      Explicação: Com E[u|X]=0, evitamos viés mesmo dentro de subgrupos específicos (como diferentes níveis de preço).
-
-      14) B) Falsa
-      Explicação: Uma correlação nula não elimina a possibilidade de causalidade, que pode ser não linear ou encoberta.
-
-      15) C) Resposta
-      Explicação: “Resposta” se refere à variável dependente, não à variável explicativa.
-
-      16) B) A matriz X'X é invertível
-      Explicação: Para que o estimador MQO funcione, a matriz X'X deve poder ser invertida, o que não acontece se houver multicolinearidade perfeita.
-
-      17) A) β₁ = 1,5
-      Explicação: Cálculo do coeficiente angular:
-
-      Passo 1 – Calcular as médias:
-      X̄ = (1 + 2 + 3)/3 = 2
-      Ȳ = (4 + 5 + 7)/3 ≈ 5,33
-
-      Passo 2 – Aplicar fórmula:
-      β₁ = Σ[(Xᵢ - X̄)(Yᵢ - Ȳ)] / Σ[(Xᵢ - X̄)²]
-
-      Tabela auxiliar:
-      Xᵢ  Yᵢ   Xᵢ−X̄   Yᵢ−Ȳ   (Xᵢ−X̄)(Yᵢ−Ȳ)   (Xᵢ−X̄)²
-      1    4     -1     -1,33       1,33         1
-      2    5      0     -0,33       0,00         0
-      3    7      1      1,67       1,67         1
-
-      Somatórios:
-      Numerador = 1,33 + 0 + 1,67 = 3,00
-      Denominador = 1 + 0 + 1 = 2
-
-      Resultado:
-      β₁ = 3 / 2 = 1,5
-
-      18) B) β₀ = 2,33
-      Explicação: Cálculo do intercepto:
-
-      Fórmula:
-      β₀ = Ȳ - β₁ × X̄
-
-      Substituindo:
-      β₀ = 5,33 - 1,5 × 2
-      β₀ = 5,33 - 3 = 2,33
-
-      19) B) Ŷ = 2,33 + 1,5X
-      Explicação: Com β₀ = 2,33 e β₁ = 1,5, a equação da reta estimada é Ŷ = 2,33 + 1,5X.
-
-    --- Fim dos comentários ---`;
-
-      document.getElementById("textoComentado").innerText = texto;
-      bloco.style.display = "block";
-      btn.innerText = "[-] Ocultar Comentários";
-    }
-  </script>
+      }
+    </script>
 </body>
 </html>
